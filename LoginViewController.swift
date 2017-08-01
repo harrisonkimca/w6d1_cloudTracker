@@ -15,17 +15,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var newaccountLabel: UILabel!
     
-    
-    
-    
-    
-   
+    var networkManager = NetworkManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
     }
     
+        
     
 
     //MARK: Actions
@@ -44,7 +42,6 @@ class LoginViewController: UIViewController {
             alertUser(title: "Invalid Password", message: "Password must contain at least 6 characters")
             return
         }
-        
         print ("Signup button pressed")
     }
     
@@ -63,20 +60,10 @@ class LoginViewController: UIViewController {
             return
         }
         print ("Login button pressed")
+        
+        dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    //MARK: UITextFieldDelegate
-   
     
     //MARK: Private Methods
     // https://www.appcoda.com/uialertcontroller-swift-closures-enum/

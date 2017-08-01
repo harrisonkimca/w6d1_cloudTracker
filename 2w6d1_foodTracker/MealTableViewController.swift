@@ -98,7 +98,7 @@ class MealTableViewController: UITableViewController {
     }
     
         // MARK: - Navigation
-
+    // http://www.thomashanning.com/passing-data-between-view-controllers/
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

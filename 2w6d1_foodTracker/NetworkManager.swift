@@ -9,8 +9,19 @@
 import UIKit
 
 class NetworkManager: NSObject {
+    
+    
 
     //MARK: Signup
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 //    let postData =
 //    [
