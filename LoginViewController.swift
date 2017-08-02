@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var newaccountLabel: UILabel!
     
-    var networkManager = NetworkManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +42,18 @@ class LoginViewController: UIViewController {
             return
         }
         print ("Signup button pressed")
+        
+        NetworkManager.requestPost(path: "/signup", with: [userInput, passwordInput]) {(data: [String: Any]) in
+            guard let token = data["token"] as? String else
+            {
+                // some problem
+                return
+            }
+            // save to user defaults
+            UserDefaults.standard.setValue(token, forKey: "user_auth_token")
+            print("\(UserDefaults.standard.value(forKey: "user_auth_token")!)")
+        }
+        self.performSegue(withIdentifier: "GotIn", sender: nil)
     }
     
     
@@ -61,13 +72,27 @@ class LoginViewController: UIViewController {
         }
         print ("Login button pressed")
         
-        dismiss(animated: true, completion: nil)
+        NetworkManager.requestPost(path: "/login", with: [userInput, passwordInput]) {(data: [String: Any]) in
+            guard let token = data["token"] as? String else
+            {
+                // some problem
+                return
+            }
+            // save to user defaults
+            UserDefaults.standard.setValue(token, forKey: "user_auth_token")
+            print("\(UserDefaults.standard.value(forKey: "user_auth_token")!)")
+            
+        }
+        self.performSegue(withIdentifier: "GotIn", sender: nil)
+        
     }
     
     
-    //MARK: Private Methods
+    
+    
+    //MARK: Alert
     // https://www.appcoda.com/uialertcontroller-swift-closures-enum/
-    private func alertUser(title: String, message: String) -> Void
+    func alertUser(title: String, message: String) -> Void
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -79,13 +104,10 @@ class LoginViewController: UIViewController {
     }
     
     // https://stackoverflow.com/questions/37938435/swift-validate-username-input
-    private func isValid(userInput: String) -> Bool
+    func isValid(userInput: String) -> Bool
     {
         let RegEx = "\\A\\w{6,16}\\z"
         let Test = NSPredicate(format: "SELF MATCHES %@", RegEx)
         return Test.evaluate(with:userInput)
     }
-    
-    
-    
 }

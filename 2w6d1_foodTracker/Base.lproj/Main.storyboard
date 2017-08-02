@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1db-Z7-KSj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bHI-UV-oYB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -141,7 +141,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bE8-x8-REd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535" y="131"/>
+            <point key="canvasLocation" x="-58" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yRn-gI-c9r">
@@ -154,12 +154,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bHI-UV-oYB" kind="relationship" relationship="rootViewController" id="t8k-Rw-v2C"/>
+                        <segue destination="lHW-L2-ZFl" kind="relationship" relationship="rootViewController" id="tZK-QQ-FLN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gm5-xv-HqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-994" y="131"/>
+            <point key="canvasLocation" x="-855" y="131"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AWQ-JJ-nLD">
@@ -232,12 +232,12 @@
                         <outlet property="newaccountLabel" destination="9SH-yN-znz" id="nwN-ke-cXh"/>
                         <outlet property="passwordField" destination="Pwb-lP-uzF" id="kwz-62-f4y"/>
                         <outlet property="usernameField" destination="6Ul-Ge-VBO" id="tJf-9N-bpZ"/>
-                        <segue destination="lHW-L2-ZFl" kind="show" identifier="YourMeals" id="ovW-Wt-wC4"/>
+                        <segue destination="1db-Z7-KSj" kind="show" identifier="GotIn" id="5Ma-ZP-8zp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqD-EK-PHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247.19999999999999" y="130.88455772113943"/>
+            <point key="canvasLocation" x="-1644" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aPf-cd-d4K">
