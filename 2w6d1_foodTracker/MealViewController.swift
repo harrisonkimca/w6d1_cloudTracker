@@ -13,6 +13,8 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     //MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -33,6 +35,8 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         {
             navigationItem.title = meal.name
             nameTextField.text = meal.name
+            descriptionTextField.text = meal.details
+            caloriesTextField.text = String(meal.calories)
             photoImageView.image = meal.photo
             ratingControl.rating = meal.rating
         }
@@ -120,13 +124,14 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
         
         let name = nameTextField.text ?? ""
+        let details = descriptionTextField.text ?? ""
+        let calories = Int(caloriesTextField.text!)
         let photo = photoImageView.image
         let rating = ratingControl.rating
         
         // Set the meal to be passed to MealTableViewController after the unwind segue
-        meal = Meal(name: name, photo: photo, rating: rating)
+        meal = Meal(name: name, details: details, calories: calories!, photo: photo, rating: rating)
     }
-    
     
     
     //MARK: Actions
@@ -142,9 +147,11 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     //MARK: Private Methods
     private func updateSaveButtonState()
     {
-        // Disable the Save button if the text field is empty
-        let text = nameTextField.text ?? ""
-        saveButton.isEnabled = !text.isEmpty
+        // Disable the Save button if any of the texts fields are empty
+        let nameText = nameTextField.text ?? ""
+        let detailsText = descriptionTextField.text ?? ""
+        let hasCalories = (caloriesTextField.text != nil) && (Int(caloriesTextField.text!) != nil) && (Int(caloriesTextField.text!)! >= 0)
+        saveButton.isEnabled = !nameText.isEmpty && !detailsText.isEmpty && hasCalories
     }
 }
 

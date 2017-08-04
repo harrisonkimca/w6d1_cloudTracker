@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				8827F3D51F30DD2F00AED145 /* LoginViewController.swift */,
-				88369BFC1F2E6BBD004764D2 /* MealViewController.swift */,
 				88559AF51F2FD293007E541C /* MealTableViewController.swift */,
+				88369BFC1F2E6BBD004764D2 /* MealViewController.swift */,
 				88559AEF1F2F50B5007E541C /* RatingControl.swift */,
 			);
 			name = Controller;
