@@ -6,6 +6,7 @@
 //  Copyright © 2017 Seantastic31. All rights reserved.
 //
 
+// DATA MODEL: STEP 1: Replace Foundation with UIKit (includes Foundation)
 import UIKit
 // PERSIST DATA: STEP 5: Import unified logging system
 //import os.log
@@ -15,6 +16,7 @@ import UIKit
     
 class Meal: NSObject {
     
+    // DATA MODEL: STEP 2: Add object properties (set photo & rating as optionals because will come later)
     //MARK: Properties
     var name: String
     var details: String
@@ -34,6 +36,7 @@ class Meal: NSObject {
 //        static let rating = "rating"
 //    }
     
+    // DATA MODEL: STEP 3: Declare initializer
     //MARK: Initialization
     init?(name: String, details: String, calories: Int, photo: UIImage?, rating: Int)
     {
@@ -55,7 +58,7 @@ class Meal: NSObject {
 //            return nil
 //        }
         
-        
+        // DATA MODEL: STEP 4: set initial values for properties (GOTO MealViewController)(
         // Initialize stored properties
         self.name = name
         self.details = details

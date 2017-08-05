@@ -36,6 +36,8 @@
                                         <rect key="frame" x="11.5" y="38" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="320" id="7f1-pD-cGA"/>
+                                            <constraint firstAttribute="width" constant="320" id="Aij-Z8-8af"/>
                                             <constraint firstAttribute="width" secondItem="98K-eD-zyK" secondAttribute="height" multiplier="1:1" id="Yhf-cJ-QD6"/>
                                         </constraints>
                                         <connections>

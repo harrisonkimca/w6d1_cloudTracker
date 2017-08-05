@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// DATA MODEL: STEP 7: Import unified logging system
 import os.log
 
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -17,8 +18,10 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
+    // DATA MODEL: STEP 6: Set up outlet for save button
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    // DATA MODEL: STEP 5: Add meal property to hold meals coming from either the 'MealTableViewController' via the 'prepare(for:sender) or from the user creating a new meal (but optional because at any time it could be nil)
     var meal: Meal?
     
     
@@ -88,6 +91,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         dismiss(animated: true, completion: nil)
     }
     
+    // DATA MODEL: STEP 19: Ctrl/drag CANCEL button from Storyboard to create action
     //MARK: Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem)
     {
@@ -97,6 +101,7 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         if isPresentingInAddMealMode
         {
+            // DATA MODEL: STEP 20: If MealViewController is being used to add a meal then use dismiss to cancel
             dismiss(animated: true, completion: nil)
         }
         else if let owningNavigationController = navigationController
@@ -110,12 +115,13 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
     }
     
-    
+    // DATA MODEL: STEP 8: Use *** UNWIND SEGUE *** to send data from the *** SOURCE VIEW CONTROLLER ***
     // This method lets you configure a view controller before it is presented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
+        // DATA MODEL: STEP 9: Check to make sure the save button was pressed
         // Configure the destination view controller only when the save button  is pressed
         guard let button = sender as? UIBarButtonItem, button === saveButton else
         {
@@ -123,17 +129,19 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
             return
         }
         
+        // DATA MODEL: STEP 10: If save button pressed then create constants from textfields, selected image and rating
         let name = nameTextField.text ?? ""
         let details = descriptionTextField.text ?? ""
         let calories = Int(caloriesTextField.text!)
         let photo = photoImageView.image
         let rating = ratingControl.rating
         
+        // DATA MODEL: STEP 11: Configure meal properties with appropriate values before segue executes (GOTO MealTableViewController) ==> NEED TO ADD ACTION TO UNWIND BACK TO PREVIOUS VIEW CONTROLLER
         // Set the meal to be passed to MealTableViewController after the unwind segue
         meal = Meal(name: name, details: details, calories: calories!, photo: photo, rating: rating)
     }
     
-    
+        
     //MARK: Actions
     @IBAction func selectImageFromPhotoGallery(_ sender: UITapGestureRecognizer)
     {

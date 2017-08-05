@@ -151,25 +151,42 @@ class MealTableViewController: UITableViewController {
         }
     }
     
+    // ***** DATA MODEL: STEP 12: Because UNWIND SEGUE need to place action in MealTableViewController so it executes at runtime (HENCE NAMED 'unwindToMealList') ***** 
     
+    // *************************************************************************************************
+    //
+    //  DATA MODEL: STEP 13: TO MAKE THE UNWIND SEGUE WORK GO TO STORYBOARD and ctrl/drag the SAVE button to the EXIT icon in the NAVIGATION BAR and CHOOSE the unwind segue 'unwindToMealList'
+    
+    //
+    //  NOTE: SAVE BUTTON IS ONLY CONNECTED TO THE EXIT ICON IN THE NAVIGATION BAR OF THE MEALVIEWCONTROLLER VS BEING CONNECTED BELOW (UNWIND SEGUE CAN BE SELECTED IN THE NAVIGATION WINDOW OF THE SCENE FOR MEALTABLEVIEWCONTROLLER (AT THE VERY BOTTOM)
+    //
+    //  ALSO, NO IDENTIFIER USED FOR THE UNWIND SEGUE BECAUSE SOURCEVIEWCONTROLLER IS SET AS THE SENDER (AND DOWNCAST USING THE OPTIONAL TYPE CAST OPERATOR 'as?')
+    // *************************************************************************************************
+    
+    // DATA MODEL: STEP 14: action takes in UIStoryboardSegue as an argument
     //MARK: Actions
     @IBAction func unwindToMealList(sender: UIStoryboardSegue)
     {
+        // DATA MODEL: STEP 15: The sourceViewController is set as the sender (ie, the unwind segue activated by pressing the SAVE button) and downcast to a MealViewController using 'as?'
         if let sourceViewController = sender.source as?
             MealViewController, let meal = sourceViewController.meal
         {
             if let selectedIndexPath = tableView.indexPathForSelectedRow
             {
+                
                 // Update an existing meal
                 meals[selectedIndexPath.row] = meal
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else
             {
+                // DATA MODEL: STEP 16: If the meal property is not Nil and the sourceViewController is successfully downcast from a UIViewController to a MealViewController allowing it to be set as the sourceViewController then any new meal is given a newIndexPath so the new meal can be inserted into the tableView
                 // Add a new meal
                 let newIndexPath = IndexPath(row: meals.count, section: 0)
                 
+                // DATA MODEL: STEP 17: Add new meal to existing list of meals in the data model
                 meals.append(meal)
+                // DATA MODEL: STEP 18: Animates insertion of new row for new meal into tableView (GOTO MealTableViewController to create a CANCEL button)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             
@@ -224,5 +241,38 @@ class MealTableViewController: UITableViewController {
 //        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as?
 //        [Meal]
 //    }
+    
+    // ************************* STORYBOARD TO CREATE SEPARATE VIEWS FOR 'ADD ITEM' AND 'DETAIL VIEW/EDIT' ***************************
+    //
+    // STEP 1: MEALTABLEVIEWCONTROLLER (ADD MEAL): Add a navigation bar into the MealTableViewController by embedding a Navigation Controller into MealTableViewController and changing the entry point to the Navigation Controller
+    //
+    // STEP 2: MEALTABLEVIEWCONTROLLER (ADD MEAL): Double click navigation bar and change title to 'Your Meals'
+    //
+    // STEP 3: MEALTABLEVIEWCONTROLLER (ADD MEAL): Drag a 'Bar Button Item' to the right side of the navigation bar & change name to '+' in the Attributes Inspector
+    //
+    // STEP 4: MEALTABLEVIEWCONTROLLER (ADD MEAL): Add action segue by ctrl/dragging from '+' to MealViewController and selecting segue to 'Present Modally' (but no back button)
+    //
+    // STEP 5: MEALTABLEVIEWCONTROLLER (ADD MEAL): Select the segue and give it an identifier name of 'AddItem' in the attributes inspector
+    //
+    // STEP 6: MEALVIEWCONTROLLER (ADD MEAL): Switch to the MealViewController and select the Yellow View Controller icon at the top of the scene and embed a Navigation Controller into the modal AddItem view (will add a Navigation Bar at the top of the modal view to maintain visual continuity)
+    //
+    // STEP 7: MEALVIEWCONTROLLER (ADD MEAL): Double click on the navigation bar of the AddItem View and add 'New Meal' title
+    //
+    // STEP 8: MEALVIEWCONTROLLER (ADD MEAL): Drag 'Bar Button Item' to the left of the navigation bar and rename to 'Cancel' under 'System Item' in the attributes inspector
+    //
+    // STEP 9: MEALVIEWCONTROLLER (ADD MEAL): Drag 'Bar Button Item' to the right of the navigation bar and rename to 'Save' under 'System Item' in the attributes inspector
+    //
+    // ************************* GOTO MEAL.SWIFT TO SET UP THE DATA MODEL ***************************
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
